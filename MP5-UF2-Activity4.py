@@ -8,7 +8,7 @@ def MostrarOpcions():
 2 -
 3 -
 4 - Dibuixar un among us
-5 -
+5 - Dibuixar el logo de Avengers
 6 -
 
 0 - Tancar Programa
@@ -19,6 +19,91 @@ def MostrarOpcions():
 def MostrarMissatge(msg):
     print(msg)
     input()
+
+# Avengers
+def Avengers():
+    import turtle
+    s = turtle.getscreen()
+    t = turtle.Turtle()
+    turtle.bgcolor('black')
+    def draw_circle():
+        # circle gran
+        t.setposition(0, -280)
+        t.pendown()
+        t.begin_fill()
+        t.color('red')
+        t.pencolor('white')
+        t.circle(300)
+        t.end_fill()
+        t.penup()
+    def draw_circle2():
+        # circle petit
+        t.pensize(2)
+        t.setposition(0, -230)
+        t.pendown()
+        t.begin_fill()
+        t.color('black')
+        t.circle(250)
+        t.end_fill()
+        t.penup()
+    def draw_A():
+        # letra ‘A’
+        t.setposition(30, -110)
+        t.pendown()
+        t.begin_fill()
+        t.color('red')
+        t.pensize(10)
+        t.pencolor('white')
+        t.forward(23)
+        t.backward(123)
+        t.left(60)
+        t.backward(220)
+        t.right(60)
+        t.backward(100)
+        t.right(117)
+        t.backward(710)
+        t.right(63)
+        t.backward(110)
+        t.right(90)
+        t.backward(510)
+        t.right(90)
+        t.backward(100)
+        t.right(90)
+        t.backward(70)
+        t.end_fill()
+        t.penup()
+    def draw_triangle():
+        # Triangle dentro de ‘A’ 
+        t.pensize(10)
+        t.setposition(53, -40)
+        t.pendown()
+        t.begin_fill()
+        t.color('black')
+        t.pencolor('white')
+        t.right(90)
+        t.forward(100)
+        t.right(115)
+        t.forward(250)
+        t.right(157)
+        t.forward(227)
+        t.end_fill()
+        
+    def draw_arrow():
+        # flecha dentro de ‘A’ i triangle
+        t.backward(80)
+        t.left(42)
+        t.forward(147)
+        t.right(83)
+        t.forward(140)
+    
+    draw_circle()
+    draw_circle2()
+    draw_A()
+    draw_triangle()
+    draw_arrow()
+
+    t.screen.exitonclick()
+    MostrarMissatge("Entra tecla enter per continuar")
 
 # Amongus
 def Amongus():
@@ -42,16 +127,17 @@ def Amongus():
         s = turtle.getscreen()
         t = turtle.Turtle()
 
-        # it can move forward backward left right
+        
         def body():
+            
             """ draws the body """
             t.pensize(20)
-            #t.speed(15)
+            #t.speed(15) es la velositat de la flecha
             turtle.hideturtle()
             t.fillcolor(BODY_COLOR)
             t.begin_fill()
 
-            # right side
+            # sitio de derecha 
             t.right(90)
             t.forward(50)
             t.right(180)
@@ -59,11 +145,11 @@ def Amongus():
             t.right(180)
             t.forward(200)
 
-            # head curve
+            # cabesa curve
             t.right(180)
             t.circle(100, -180)
 
-            # left side
+            # sitio de esquera
             t.backward(20)
             t.left(15)
             t.circle(500, -20)
@@ -75,7 +161,7 @@ def Amongus():
             t.left(7)
             t.backward(50)
 
-            # hip
+            # cadera
             t.up()
             t.left(90)
             t.forward(10)
@@ -144,8 +230,7 @@ def Amongus():
             t.forward(30)
 
             t.end_fill()
-
-
+    
         body()
         glass()
         backpack()
@@ -176,9 +261,9 @@ while (tecla != 0):
         elif (tecla == 3):
             print()
         elif (tecla == 4):
-            print()
+            Amongus()
         elif (tecla == 5):
-            print()
+            Avengers()
         elif (tecla == 6):
             print()
         elif (tecla == 0) :
