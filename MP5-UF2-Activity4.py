@@ -1,12 +1,12 @@
 import os
-clear = lambda: os.system('cls')
+clear = lambda: os.system('cls') # Aquest variable serà com el clear de linux, et borrarà lo que hi ha mostrat a la consola
 
 # Mostrar Opcions
-def MostrarOpcions():
+def MostrarOpcions(): # Aquest funció podrà mostrar totes les opcions del programa
     print("""
 1 - Mostrar Taula de Multiplicar
 2 - Grafic de Notes
-3 -
+3 - Calcular Dies Viscuts
 4 -
 5 -
 6 -
@@ -23,7 +23,7 @@ def MostrarMissatge(msg):
 
 # Taula de Multiplicar
 def TaulaMultiplicar():
-    linia = "X \t"
+    linia = "X \t" # Aquesta linia servirà per afegir linia en linia
     for i in range(1, 11):
         linia = linia + str(i) + "\t"
     print(linia)
@@ -41,26 +41,26 @@ def GraficNotes():
     formatCorrecte = False
     try:
         print("Núm de alumnes que han tret Suspesos->", end="")
-        suspesos = int(input())
+        suspesos = int(input()) # Entrem variable de suspesos
         if (suspesos < 0 or suspesos > 1000):
             raise Exception
         print("Núm de alumnes que han tret Suficients ->", end="")
-        suficients = int(input())
+        suficients = int(input()) # Entrem variable de suficients
         if (suficients < 0 or suficients > 1000):
             raise Exception
         print("Núm de alumnes que han tret Notables->", end="")
-        notables = int(input())
+        notables = int(input()) # Entrem variable de notables
         if (notables < 0 or notables > 1000):
             raise Exception
         print("Núm de alumnes que han tret Excel·lents->", end="")
-        excellents = int(input())
+        excellents = int(input()) # Entrem variable de excel·lents
         if (excellents < 0 or excellents > 1000):
             raise Exception
         formatCorrecte = True  
     except:
         print("Error el format no és correcte, Ha de ser de 0 a 1000")
 
-    if (formatCorrecte):
+    if (formatCorrecte): # Si format és correcte entra al if
         totals = suficients + suspesos + notables + excellents
         aP = (suficients / totals) * 360
         sP1= (suspesos / totals) * 360
@@ -68,7 +68,7 @@ def GraficNotes():
         eP = (excellents / totals) * 360
         sP = sP1 + aP
         nP = sP + nP1
-        coord = (100,100,500,500)
+        coord = (100,100,500,500) # Coordenades del diagrama
         finestra = Tk()
         canvas = Canvas(finestra, width=700, height=600)
         canvas.create_arc(coord,start = 0,extent = aP,fill ="yellow",width ="2")
@@ -88,15 +88,44 @@ def GraficNotes():
     
     MostrarMissatge("Entra tecla enter per continuar")
 
+# Dies Viscuts
+def DiesViscuts():
+    from calendar import different_locale # Importem el calendar per restar dia actual amb el que has posat
+    import datetime
+    formatCorrecte = False
+    print ("Escriu el dia que vas neixer (0-31) -> ")
+    dia = int(input()) # Esperem que ens entri les variables dia, mes i any
+    print ("Escriu el mes que vas neixer (0-12) -> ")
+    mes = int(input())
+    print ("Escriu el any que vas neixer (XXXX) -> ")
+    any = int(input())
+    try:
+        dataNaixament = datetime.datetime (any, mes, dia) # Si ens entra coses rares salta excepció
+        formatCorrecte = True
+    except:
+        print("Error Format Incorrecte")
+    
+    if (formatCorrecte): # Si el format és correcte doncs farà el IF que calcularà els dies viscuts
+        dataAra = datetime.datetime.now ()
+        total = dataAra - dataNaixament
+        diesTotal = total.days
+        segonsTotal = total.seconds
+        horesTotal, segonsTotal = divmod(segonsTotal, 3600)
+        minutsTotal, segonsTotal = divmod(segonsTotal, 60)
+
+        missatge = ("En total has viscut: {} Dies, {} Hores, {} Minuts i {} Segons".format(diesTotal, horesTotal, minutsTotal, segonsTotal))
+        print (missatge)
+    MostrarMissatge("Entra tecla enter per continuar")
+
 # Main
 tecla = 10
 while (tecla != 0):
     correcte = False
     try:
-        MostrarOpcions()
+        MostrarOpcions() # Cridem la funció per que mostri els opcions
         print("Entra un número -> ", end="")
         tecla = int(input())
-        if (tecla < 0 or tecla > 6) :
+        if (tecla < 0 or tecla > 6) : # Esperem un numero de 0 al 6 altrament serà un Exception
             raise Exception
         correcte = True
     except:
@@ -109,7 +138,7 @@ while (tecla != 0):
         elif (tecla == 2):
             GraficNotes()
         elif (tecla == 3):
-            print()
+            DiesViscuts()
         elif (tecla == 4):
             print()
         elif (tecla == 5):
