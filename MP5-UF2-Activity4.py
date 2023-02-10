@@ -1,3 +1,4 @@
+
 import os
 clear = lambda: os.system('cls')
 
@@ -9,7 +10,7 @@ def MostrarOpcions():
 3 -
 4 - Dibuixar un among us
 5 - Dibuixar el logo de Avengers
-6 -
+6 - Un figura de colors 
 
 0 - Tancar Programa
     """)
@@ -19,6 +20,57 @@ def MostrarOpcions():
 def MostrarMissatge(msg):
     print(msg)
     input()
+
+# cercle
+def cercle():
+    import turtle
+    rango = 0 #vueltas
+    puntas = 0 #puntas de final
+    rotasion = 0 # 0grado
+    formatCorrecte = False
+    try:
+        print("""
+        Ajustes por defecto:
+        rango = 600 | el max = 1000
+        puntas = 10 | el max = 40
+        rotasion = 777 | el max = 1000
+        
+        Canvia de configuracio si vols
+        """)
+        
+        rango = (input("Entra un rang -->"))
+        puntas = (input("Entra un puntas -->"))
+        rotasion = (input("Entra un rotasion -->"))
+        if(rango == ""):
+            rango = 600
+        if(puntas == ""):
+            puntas = 10
+        if(rotasion == ""):
+            rotasion = 777
+        rango = int(rango)
+        puntas = int(puntas)
+        rotasion = int(rotasion)
+        if (rango > 1000 or puntas > 40 or rotasion > 1000 or rango < 0 or puntas < 0 or rotasion < 0):
+            raise Exception
+        formatCorrecte = True
+    except:
+        print("Error")
+    if(formatCorrecte):
+        turtle.hideturtle()
+        t = turtle.Turtle()
+        t.speed(100) #la velocitat
+        turtle.bgcolor('black')
+        color=('steelblue','coral','magenta','palegreen')
+        for i in range(rango):
+            t.pencolor(color[i%4])
+            t.rt(i)
+            t.circle(puntas,i)
+            t.fd(i)
+            t.rt(rotasion)
+        t.end_fill()
+        turtle.exitonclick()
+        MostrarMissatge("Entra tecla enter per continuar")
+
 
 # Avengers
 def Avengers():
@@ -265,7 +317,7 @@ while (tecla != 0):
         elif (tecla == 5):
             Avengers()
         elif (tecla == 6):
-            print()
+            cercle()
         elif (tecla == 0) :
             MostrarMissatge("Clica Qualsevol Tecla Per Sortir Del Programa")
 
